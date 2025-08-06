@@ -30,7 +30,8 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: |
+          yarn install --frozen-lockfile --network-timeout 60000 || (yarn cache clean && yarn install)
 
       - name: Install dependencies
         run: pip install -r requirements.txt
